@@ -1,0 +1,10 @@
+selenium
+tabulate
+webbot
+beautifulsoup4
+colorama
+pandas
+matplotlib
+seaborn
+numpy
+console_progressbar
