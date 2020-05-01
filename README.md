@@ -1,8 +1,7 @@
 # Student-Portal-Automation
 'Hey Gitamite, This Script will make your life easy! '
 
-
-![Uploading Screenshot 2020-05-02 at 2.08.45 AM.png…]()
+<img width="1247" alt="Screenshot 2020-05-02 at 2 08 45 AM" src="https://user-images.githubusercontent.com/45916202/80840592-40f49d80-8c1b-11ea-88c3-ebae791d44f0.png">
 
 
 ## Installation
