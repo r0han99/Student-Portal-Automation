@@ -6,14 +6,14 @@ from permissionstatus import *
 from prediction import *
 import urllib.request
 from colorama import Fore, Style
-
+import os
 import time
 
 VERSION = '~ 1.0.0'
 
-BANNER = Fore.GREEN+ '''
+BANNER = Fore.GREEN + '''
 
-    Student Portal '''+Fore.RED+'''
+    Student Portal ''' + Fore.RED + '''
                                                                                ,,                     
               db                 mm                                     mm     db                     
              ;MM:                MM                                     MM                            
@@ -21,19 +21,19 @@ BANNER = Fore.GREEN+ '''
            ,M  `MM    MM    MM   MM  6W'   `Wb MM    MM    MM  8)   MM  MM     MM 6W'   `Wb MM    MM  
            AbmmmqMA   MM    MM   MM  8M     M8 MM    MM    MM   ,pm9MM  MM     MM 8M     M8 MM    MM  
           A'     VML  MM    MM   MM  YA.   ,A9 MM    MM    MM  8M   MM  MM     MM YA.   ,A9 MM    MM  
-        .AMA.   .AMMA.`Mbod"YML. `Mbmo`Ybmd9'.JMML  JMML  JMML.`Moo9^Yo.`Mbmo.JMML.`Ybmd9'.JMML  JMML.'''+Fore.GREEN+VERSION+ '''
-        
-                                                                                                        
-                                                                                                      
+        .AMA.   .AMMA.`Mbod"YML. `Mbmo`Ybmd9'.JMML  JMML  JMML.`Moo9^Yo.`Mbmo.JMML.`Ybmd9'.JMML  JMML.''' + Fore.GREEN + VERSION + '''
+
+
+
                                                                                             - 𝘽𝙮 𝙍𝙤𝙝𝙖𝙣 '''
-try:
-    file = open('logindetails.txt', 'r+')
-except FileNotFoundError:
-    file = open('logindetails.txt','w+')
+fn = 'logindetails.txt'
+if os.path.exists(fn):
+    file = open(fn, "r")
+    temp = file.readlines()
+    file.close()
 
-content = file.readlines()
-
-if (content == []):
+else:
+    file = open(fn, "w")
     print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
 
     print('\n')
@@ -41,31 +41,26 @@ if (content == []):
     detail1 = input('R E G I S T R A T I O N  I D :')
     print('\n')
     detail2 = input('P A S S W O R D :')
+
     file.write(detail1 + "\n" + detail2)
-    file = open('logindetails.txt', 'r+')
-    temp = file.readlines()
     file.close()
-
-
-else:
-
-    file = open('logindetails.txt', 'r+')
+    file = open(fn, 'r')
     temp = file.readlines()
     file.close()
 
 # BANNER
-print(Style.BRIGHT+BANNER)
+print(Style.BRIGHT + BANNER)
 print(Style.RESET_ALL)
 
-Graphical = ['graphical', 'Graphical','G','g']
-Spider= ['Spider', 'spider','S','s']
+Graphical = ['graphical', 'Graphical', 'G', 'g']
+Spider = ['Spider', 'spider', 'S', 's']
 MATERIAL_SCRIPT_CODE = ['Material', 'material', 'M', 'm']
 STATUS_SCRIPT_CODE = ['Status', 'status', 'S', 's']
 PREDICTORS_SCRIPT_CODE = ['Predictor', 'predictor', 'P', 'p']
 ATTENDANCE_SCRIPT_CODE = ['Automate', 'automate', 'A', 'a']
-PERMISSION_APPLY_CODE = ['Apply','apply','ap','Ap','aP','AP']
-PERMISSION_STATUS_CODE = ['Pstat','pstat','PSTAT','ps','Ps','pS']
-EXIT_CODE = ['EXE','exe','e','E']
+PERMISSION_APPLY_CODE = ['Apply', 'apply', 'ap', 'Ap', 'aP', 'AP']
+PERMISSION_STATUS_CODE = ['Pstat', 'pstat', 'PSTAT', 'ps', 'Ps', 'pS']
+EXIT_CODE = ['EXE', 'exe', 'e', 'E']
 
 
 # NETWORK STATUS
@@ -76,21 +71,18 @@ def CONNECTION_CHECK():
     except:
         return False
 
+
 print('\n')
 
-
-
-print(Fore.LIGHTCYAN_EX+"Checking Internet Connectivity STATUS ~",end="")
+print(Fore.LIGHTCYAN_EX + "Checking Internet Connectivity STATUS ~", end="")
 
 time.sleep(2)
 
+if (CONNECTION_CHECK()):
 
-if(CONNECTION_CHECK()):
-
-    print(Fore.GREEN+Style.BRIGHT+' CONNECTION ESTABLISHED!')
+    print(Fore.GREEN + Style.BRIGHT + ' CONNECTION ESTABLISHED!')
     print(Style.RESET_ALL)
     # CALLING THE MAIN FUNCTION
-
 
     while True:
         print('\n\n')
@@ -171,11 +163,11 @@ if(CONNECTION_CHECK()):
 
 
         elif option in EXIT_CODE:
-            print(Fore.RED+Style.BRIGHT+'Exiting Code .. ')
+            print(Fore.RED + Style.BRIGHT + 'Exiting Code .. ')
             exit()
 
         else:
-            print(Fore.RED+Style.BRIGHT+'Invalid Script C0de ... ')
+            print(Fore.RED + Style.BRIGHT + 'Invalid Script C0de ... ')
             continue
 
 
@@ -184,8 +176,8 @@ if(CONNECTION_CHECK()):
 
 
 else:
-    print(Fore.RED+Style.BRIGHT+' NO INTERNET')
-    print(Fore.RED+Style.BRIGHT+'Exiting Code ...\n')
+    print(Fore.RED + Style.BRIGHT + ' NO INTERNET')
+    print(Fore.RED + Style.BRIGHT + 'Exiting Code ...\n')
     exit()
 
 
