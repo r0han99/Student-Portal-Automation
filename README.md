@@ -1,7 +1,7 @@
 # Student-Portal-Automation
 'Hey Gitamite, This Script will make your life easy! '
 
-<img width="1247" alt="Screenshot 2020-05-02 at 2 08 45 AM" src="https://user-images.githubusercontent.com/45916202/80840592-40f49d80-8c1b-11ea-88c3-ebae791d44f0.png">
+![1_](https://user-images.githubusercontent.com/45916202/80859259-d3795900-8c7c-11ea-87b9-1028e96b6a35.jpg)
 
 
 
