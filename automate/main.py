@@ -118,6 +118,7 @@ def WEB_AUTOMATE(driver):
                 press_key = input(Fore.GREEN+"Press " + Fore.RED+Style.BRIGHT +'Enter ' +Style.RESET_ALL+Fore.GREEN+"to continue . . .")
                 if (press_key == True or press_key == False):
                     continue
+                    
 
             print('\n\n')
             print(Fore.BLUE + Style.BRIGHT + '____________________________________________')
@@ -223,6 +224,7 @@ def WEB_AUTOMATE(driver):
     except (NoSuchWindowException,WebDriverException):
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+        print(Style.RESET_ALL)
 
 
     except SessionNotCreatedException:
@@ -230,9 +232,11 @@ def WEB_AUTOMATE(driver):
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
         print(
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
-
+        print(Style.RESET_ALL)
+        
     except KeyboardInterrupt:
         print(Fore.RED+Style.BRIGHT +'\n Keyboard Interruption !\nExiting Code . . .\n')
+        print(Style.RESET_ALL)
 
 
 
