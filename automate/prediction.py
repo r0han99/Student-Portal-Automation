@@ -12,6 +12,7 @@ import numpy as np
 from tabulate import tabulate
 import matplotlib.pyplot as plt
 import seaborn as sns
+import os
 
 sns.set(style='darkgrid')
 
@@ -34,10 +35,14 @@ def PROGRESS_BAR(prompt):
     print(Style.RESET_ALL)
 
 
-file = open('logindetails.txt', 'r+')
-content = file.readlines()
+fn = 'logindetails.txt'
+if os.path.exists(fn):
+    file = open(fn, "r")
+    temp = file.readlines()
+    file.close()
 
-if (content == []):
+else:
+    file = open(fn, "w")
     print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
 
     print('\n')
@@ -45,15 +50,10 @@ if (content == []):
     detail1 = input('R E G I S T R A T I O N  I D :')
     print('\n')
     detail2 = input('P A S S W O R D :')
+
     file.write(detail1 + "\n" + detail2)
-    file = open('logindetails.txt', 'r+')
-    temp = file.readlines()
     file.close()
-
-
-else:
-
-    file = open('logindetails.txt', 'r+')
+    file = open(fn, 'r')
     temp = file.readlines()
     file.close()
 
@@ -333,5 +333,4 @@ def DRIVER(driver):
 
     except KeyboardInterrupt:
         print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
-
 
