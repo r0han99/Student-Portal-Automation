@@ -147,6 +147,7 @@ try:
 
             elif option in EXIT_CODE:
                 print(Fore.RED + Style.BRIGHT + 'Exiting Code .. ')
+                print(Style.RESET_ALL)
                 exit()
 
             else:
