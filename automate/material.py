@@ -11,13 +11,13 @@ import time
 def MATERIAL_PY():
     BANNER = Fore.RED+Style.BRIGHT+"""
     𝘼𝙪𝙩𝙤𝙢𝙖𝙩𝙞𝙤𝙣 """+"""
-             ___ ___   ____  ______    ___  ____   ____   ____  _             ____  __ __ 
+             ___ ___   ____  ______    ___  ____   ____   ____  _             ____  __ __
             |   |   | /    ||      |  /  _]|    \ |    | /    || |           |    \|  |  |
             | _   _ ||  o  ||      | /  [_ |  D  ) |  | |  o  || |     _____ |  o  )  |  |
             |  \_/  ||     ||_|  |_||    _]|    /  |  | |     || |___ |     ||   _/|  ~  |
             |   |   ||  _  |  |  |  |   [_ |    \  |  | |  _  ||     ||_____||  |  |___, |
             |   |   ||  |  |  |  |  |     ||  .  \ |  | |  |  ||     |       |  |  |     |
-            |___|___||__|__|  |__|  |_____||__|\_||____||__|__||_____|       |__|  |____/ 
+            |___|___||__|__|  |__|  |_____||__|\_||____||__|__||_____|       |__|  |____/
 
 
                                                                                     """+Fore.MAGENTA+Style.BRIGHT+VERSION
@@ -63,8 +63,9 @@ def MATERIAL_PY():
         if (press_key == True or press_key == False):
             print(Fore.CYAN+Style.BRIGHT+"\nI presume, You grabbed everything you needed .."+Fore.RED+Style.BRIGHT+"\n\nExiting Code .. ")
             web.driver.quit()
+            print('\n\n')
             exit(1)
-
+            
     try:
         web.go_to(url=url)
 
