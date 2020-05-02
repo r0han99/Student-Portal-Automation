@@ -14,13 +14,13 @@ VERSION = '~ 1.0.0'
 BANNER = Fore.GREEN+ '''
 
     Student Portal '''+Fore.RED+'''
-                                                                               ,,                     
-              db                 mm                                     mm     db                     
-             ;MM:                MM                                     MM                            
-            ,V^MM.  `7MM  `7MM mmMMmm ,pW"Wq.`7MMpMMMb.pMMMb.   ,6"Yb.mmMMmm `7MM  ,pW"Wq.`7MMpMMMb.  
-           ,M  `MM    MM    MM   MM  6W'   `Wb MM    MM    MM  8)   MM  MM     MM 6W'   `Wb MM    MM  
-           AbmmmqMA   MM    MM   MM  8M     M8 MM    MM    MM   ,pm9MM  MM     MM 8M     M8 MM    MM  
-          A'     VML  MM    MM   MM  YA.   ,A9 MM    MM    MM  8M   MM  MM     MM YA.   ,A9 MM    MM  
+                                                                               ,,
+              db                 mm                                     mm     db
+             ;MM:                MM                                     MM
+            ,V^MM.  `7MM  `7MM mmMMmm ,pW"Wq.`7MMpMMMb.pMMMb.   ,6"Yb.mmMMmm `7MM  ,pW"Wq.`7MMpMMMb.
+           ,M  `MM    MM    MM   MM  6W'   `Wb MM    MM    MM  8)   MM  MM     MM 6W'   `Wb MM    MM
+           AbmmmqMA   MM    MM   MM  8M     M8 MM    MM    MM   ,pm9MM  MM     MM 8M     M8 MM    MM
+          A'     VML  MM    MM   MM  YA.   ,A9 MM    MM    MM  8M   MM  MM     MM YA.   ,A9 MM    MM
         .AMA.   .AMMA.`Mbod"YML. `Mbmo`Ybmd9'.JMML  JMML  JMML.`Moo9^Yo.`Mbmo.JMML.`Ybmd9'.JMML  JMML.'''+Fore.GREEN+VERSION+ '''
         
                                                                                                         
@@ -80,16 +80,16 @@ try:
             print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝗰𝗮𝗱𝗲𝗺𝗶𝗰 𝗦𝘁𝗮𝘁𝘂𝘀{:>49}'.format(
                 Fore.RED + '𝗦𝘁𝗮𝘁𝘂𝘀 || 𝗦'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝘁𝘁𝗲𝗻𝗱𝗮𝗻𝗰𝗲 𝗣𝗿𝗲𝗱𝗶𝗰𝘁𝗼𝗿{:>49}'.format(
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝘁𝘁𝗲𝗻𝗱𝗮𝗻𝗰𝗲 𝗣𝗿𝗲𝗱𝗶𝗰𝘁𝗼𝗿{:>47}'.format(
                 Fore.RED + '𝗣𝗿𝗲𝗱𝗶𝗰𝘁𝗼𝗿 || 𝗣'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝘁𝘁𝗲𝗻𝗱𝗮𝗻𝗰𝗲 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗲{:>48}'.format(
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝘁𝘁𝗲𝗻𝗱𝗮𝗻𝗰𝗲 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗲{:>47}'.format(
                 Fore.RED + '𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗲 || 𝗔'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝗽𝗽𝗹𝘆 𝗳𝗼𝗿 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻{:>46}'.format(
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝗽𝗽𝗹𝘆 𝗳𝗼𝗿 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻{:>44}'.format(
                 Fore.RED + '𝗔𝗽𝗽𝗹𝘆 || 𝗮𝗽'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗦𝘁𝗮𝘁𝘂𝘀{:>49}'.format(
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗦𝘁𝗮𝘁𝘂𝘀{:>47}'.format(
                 Fore.RED + '𝗽𝘀𝘁𝗮𝘁 || 𝗽𝘀'))
 
             print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗘𝘅𝗶𝘁 𝗖𝗼𝗱𝗲{:>52}'.format(
