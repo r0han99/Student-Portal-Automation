@@ -21,7 +21,7 @@ def MATERIAL_PY():
 
 
                                                                                     """+Fore.MAGENTA+Style.BRIGHT+VERSION
-    print(BANNER+Style.BRIGHT)
+    print('\n\n'+BANNER+Style.BRIGHT)
 
     web = Browser()
     file = open('logindetails.txt', 'r+')
@@ -76,7 +76,7 @@ def MATERIAL_PY():
         # GLEARN
         Current_window = web.driver.window_handles
 
-        web.click('Glearn', xpath='//*[@id="MainContent_studentg"]/div[11]/a')
+        web.click('Glearn', xpath="//a[@href='G-Learn.aspx']")
 
         # courses
         new_window = web.driver.window_handles
