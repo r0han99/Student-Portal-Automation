@@ -50,7 +50,7 @@ months = {'1': 'Janauary',
              '9': 'September',
              '10': 'October',
              '11': 'November',
-             '12': 'December'	}
+             '12': 'December'    }
 
 def PROGRESS_BAR(prompt):
     print(Fore.CYAN+Style.BRIGHT)
@@ -95,17 +95,17 @@ def PERMISSION_APPLY():
         BANNER = Fore.RED + Style.BRIGHT + '''
 
 
-        A ᴜ ᴛ ᴏ ᴍ ᴀ ᴛ ᴇ''' + Fore.BLUE + Style.BRIGHT + '''                                                                             
-                                                        Y8P                   Y8P                                                    
+        A ᴜ ᴛ ᴏ ᴍ ᴀ ᴛ ᴇ''' + Fore.BLUE + Style.BRIGHT + '''
+                                                        Y8P                   Y8P
 
-                88888b.   .d88b.  888d888 88888b.d88b.  888 .d8888b  .d8888b  888  .d88b.  88888b.                                   
-                888 "88b d8P  Y8b 888P"   888 "888 "88b 888 88K      88K      888 d88""88b 888 "88b                                  
-                888  888 88888888 888     888  888  888 888 "Y8888b. "Y8888b. 888 888  888 888  888                                  
-                888 d88P Y8b.     888     888  888  888 888      X88      X88 888 Y88..88P 888  888                                  
-                88888P"   "Y8888  888     888  888  888 888  88888P'  88888P' 888  "Y88P"  888  888                                  
-                888                                                                                                                  
-                888                                                                                                                  
-                888                                                                                                                  
+                88888b.   .d88b.  888d888 88888b.d88b.  888 .d8888b  .d8888b  888  .d88b.  88888b.
+                888 "88b d8P  Y8b 888P"   888 "888 "88b 888 88K      88K      888 d88""88b 888 "88b
+                888  888 88888888 888     888  888  888 888 "Y8888b. "Y8888b. 888 888  888 888  888
+                888 d88P Y8b.     888     888  888  888 888      X88      X88 888 Y88..88P 888  888
+                88888P"   "Y8888  888     888  888  888 888  88888P'  88888P' 888  "Y88P"  888  888
+                888
+                888
+                888
                                                                                                 ''' + Fore.GREEN + Style.BRIGHT + VERSION
 
         temp = CREDENTIALS()
@@ -382,7 +382,7 @@ def PERMISSION_APPLY():
             # driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
             driver.quit()
 
-
+        PERMISSION()
 
 
 
