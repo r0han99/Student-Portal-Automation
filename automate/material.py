@@ -3,7 +3,7 @@ from bs4 import BeautifulSoup
 from webbot import Browser
 import pandas as pd
 from colorama import Fore,Style
-
+import os
 VERSION = '~ 1.0.0'
 
 import time
@@ -11,23 +11,27 @@ import time
 def MATERIAL_PY():
     BANNER = Fore.RED+Style.BRIGHT+"""
     𝘼𝙪𝙩𝙤𝙢𝙖𝙩𝙞𝙤𝙣 """+"""
-             ___ ___   ____  ______    ___  ____   ____   ____  _             ____  __ __
+             ___ ___   ____  ______    ___  ____   ____   ____  _             ____  __ __ 
             |   |   | /    ||      |  /  _]|    \ |    | /    || |           |    \|  |  |
             | _   _ ||  o  ||      | /  [_ |  D  ) |  | |  o  || |     _____ |  o  )  |  |
             |  \_/  ||     ||_|  |_||    _]|    /  |  | |     || |___ |     ||   _/|  ~  |
             |   |   ||  _  |  |  |  |   [_ |    \  |  | |  _  ||     ||_____||  |  |___, |
             |   |   ||  |  |  |  |  |     ||  .  \ |  | |  |  ||     |       |  |  |     |
-            |___|___||__|__|  |__|  |_____||__|\_||____||__|__||_____|       |__|  |____/
+            |___|___||__|__|  |__|  |_____||__|\_||____||__|__||_____|       |__|  |____/ 
 
 
                                                                                     """+Fore.MAGENTA+Style.BRIGHT+VERSION
     print('\n\n'+BANNER+Style.BRIGHT)
 
     web = Browser()
-    file = open('logindetails.txt', 'r+')
-    content = file.readlines()
+    fn = 'logindetails.txt'
+    if os.path.exists(fn):
+        file = open(fn, "r")
+        temp = file.readlines()
+        file.close()
 
-    if (content == []):
+    else:
+        file = open(fn, "w")
         print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
 
         print('\n')
@@ -35,15 +39,10 @@ def MATERIAL_PY():
         detail1 = input('R E G I S T R A T I O N  I D :')
         print('\n')
         detail2 = input('P A S S W O R D :')
+
         file.write(detail1 + "\n" + detail2)
-        file = open('logindetails.txt', 'r+')
-        temp = file.readlines()
         file.close()
-
-
-    else:
-
-        file = open('logindetails.txt', 'r+')
+        file = open(fn, 'r')
         temp = file.readlines()
         file.close()
 
@@ -63,9 +62,8 @@ def MATERIAL_PY():
         if (press_key == True or press_key == False):
             print(Fore.CYAN+Style.BRIGHT+"\nI presume, You grabbed everything you needed .."+Fore.RED+Style.BRIGHT+"\n\nExiting Code .. ")
             web.driver.quit()
-            print('\n\n')
             exit(1)
-            
+
     try:
         web.go_to(url=url)
 
