@@ -1,4 +1,5 @@
-from selenium.common.exceptions import NoSuchWindowException,WebDriverException,NoSuchElementException,SessionNotCreatedException
+from selenium.common.exceptions import NoSuchWindowException, WebDriverException, NoSuchElementException, \
+    SessionNotCreatedException
 from selenium import webdriver
 import pandas as pd
 from colorama import Fore, Style
@@ -12,11 +13,12 @@ from tabulate import tabulate
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-sns.set(style = 'darkgrid')
+sns.set(style='darkgrid')
 
 VERSION = '1.0.0'
 KEYBOARDPROMPTS_Yy = ['Y', 'y']
 KEYBOARDPROMPTS_Nn = ['N', 'n']
+
 
 def PROGRESS_BAR(prompt):
     print(Fore.LIGHTGREEN_EX + Style.BRIGHT)
@@ -57,10 +59,9 @@ else:
 
 url = 'https://login.gitam.edu/Login.aspx'
 
+
 def PREDICTION(control_flow):
-
-
-    if(control_flow == '01'):
+    if (control_flow == '01'):
         driver = webdriver.Chrome()
         DRIVER(driver)
 
@@ -73,9 +74,7 @@ def PREDICTION(control_flow):
         DRIVER(driver)
 
 
-
 def DRIVER(driver):
-
     BANNER = Fore.RED + Style.BRIGHT + '''                                                                              
                 𝘼𝙩𝙩𝙚𝙣𝙙𝙖𝙣𝙘𝙚''' + Fore.LIGHTGREEN_EX + Style.BRIGHT + '''                                                   
                          e                         888                ,e,                                           
@@ -86,7 +85,7 @@ def DRIVER(driver):
                     /      Y88b 888  888  "88_-888 888   /     \_88P  888 \_88P                                     
                                                        _/                     ''' + Fore.BLUE + Style.BRIGHT + VERSION
     print('\n\n\n')
-    print(BANNER+Style.RESET_ALL)
+    print(BANNER + Style.RESET_ALL)
 
     try:
 
@@ -108,13 +107,12 @@ def DRIVER(driver):
         if (driver.title == 'GITAM | Student portal'):
             print(Fore.GREEN + Style.BRIGHT + 'Successful')
 
-        print(Fore.GREEN+'\n -- Handling a Calendar ..  ')
+        print(Fore.GREEN + '\n -- Handling a Calendar ..  ')
         driver.find_element_by_xpath(xpath='// *[ @ id = "MainContent_ad"] / a').click()
 
         # calendar
 
         driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button3"]').click()
-
 
         def GET_STATUS_DF(parsed_month_data, parsed_month):
             xpath_segment = ""
@@ -122,12 +120,10 @@ def DRIVER(driver):
             print(Fore.BLUE + Style.BRIGHT + '\n  -- Calculating the Estimated Time for Scraping Data ... ')
             EST = 6 * len(parsed_month_data) / 60
             print(Fore.GREEN + Style.BRIGHT + '\n  -- Estimated Time to Scrape, EST(minutes) ~ ', round(EST, 2))
-            print(Fore.GREEN+Style.BRIGHT+'\nStarting .. ')
-            print(Fore.CYAN+Style.BRIGHT)
+            print(Fore.GREEN + Style.BRIGHT + '\nStarting .. ')
+            print(Fore.CYAN + Style.BRIGHT)
             for x in parsed_month_data:
                 xpath_segment = str(x) + " " + parsed_month
-
-
 
                 segment0 = '''//*[@title="'''
                 segment1 = '''"]'''
@@ -139,7 +135,7 @@ def DRIVER(driver):
                 dfs = pd.read_html(driver.page_source, header=0)
 
                 try:
-                    print(Fore.GREEN+Style.BRIGHT+'[ * ] '+Fore.RED+Style.BRIGHT+xpath_segment)
+                    print(Fore.GREEN + Style.BRIGHT + '[ * ] ' + Fore.RED + Style.BRIGHT + xpath_segment)
                     DATAFRAME.append(pd.DataFrame(dfs[3]))
 
                 except IndexError:
@@ -150,8 +146,6 @@ def DRIVER(driver):
             print(Style.RESET_ALL)
 
             return DATAFRAME
-
-
 
         def STATUS_CALENDAR():
             # Calendar
@@ -183,7 +177,7 @@ def DRIVER(driver):
                 else:
                     print(Fore.RED + Style.BRIGHT + '\nInvalid input, Re-Enter : ')
                     continue
-            print(Fore.GREEN+Style.BRIGHT+'Parsing .. ')
+            print(Fore.GREEN + Style.BRIGHT + 'Parsing .. ')
 
             for clicks in range(int(month_input)):
                 driver.find_element_by_xpath(
@@ -224,10 +218,10 @@ def DRIVER(driver):
         def DATA_ORGANISATION(DATAFRAME_LIST):
             copy_df_list = DATAFRAME_LIST
             if (len(DATAFRAME_LIST) != 0):
-                print(Fore.BLUE+Style.BRIGHT+'\nNumber of Days Scraped : '+Fore.GREEN,len(copy_df_list))
+                print(Fore.BLUE + Style.BRIGHT + '\nNumber of Days Scraped : ' + Fore.GREEN, len(copy_df_list))
                 print('\n')
 
-                print(Fore.GREEN+'\n  -- Organising Data to the Standard format .. ')
+                print(Fore.GREEN + '\n  -- Organising Data to the Standard format .. ')
                 pivot = copy_df_list.pop(0)
                 for df in copy_df_list:
                     pivot = pd.concat([pivot, df], axis=0)
@@ -235,14 +229,14 @@ def DRIVER(driver):
                 pivot = pivot.reset_index(drop=True)
                 pd.options.display.width = None
                 print('\n')
-                print(Fore.BLUE+Style.BRIGHT+'\nNumber of Valid Records : {}'+Fore.GREEN,len(pivot['Date and time']))
+                print(Fore.BLUE + Style.BRIGHT + '\nNumber of Valid Records : {}' + Fore.GREEN,
+                      len(pivot['Date and time']))
                 print('\n')
                 return pivot
             else:
                 print(Fore.RED + Style.BRIGHT + '\nNo Records Found !')
                 print(Fore.RED + Style.BRIGHT + '\nExiting Code .. ')
                 return 'EXIT'
-
 
         def PREPROCESSING(organised_df):
 
@@ -259,24 +253,23 @@ def DRIVER(driver):
             print(tabulate(subs_df, headers='keys'))
             print('\n')
             while True:
-                SUBJECT_INPUT = input(Fore.GREEN+'Enter'+Fore.BLUE+Style.BRIGHT+' a Subject Acronymn : ').upper()
+                SUBJECT_INPUT = input(
+                    Fore.GREEN + 'Enter' + Fore.BLUE + Style.BRIGHT + ' a Subject Acronymn : ').upper()
                 if (SUBJECT_INPUT in SUBJECTS.keys()):
-                    print(Fore.BLUE+'\n Collecting Data of ~ ' +Fore.GREEN+Style.BRIGHT +SUBJECTS[SUBJECT_INPUT])
+                    print(Fore.BLUE + '\n Collecting Data of ~ ' + Fore.GREEN + Style.BRIGHT + SUBJECTS[SUBJECT_INPUT])
                     sub_stat_df = organised_df[organised_df['Subject'] == SUBJECTS[SUBJECT_INPUT]]
                     print(sub_stat_df.reset_index(drop=True))
-                    print(Fore.BLUE+Style.BRIGHT+'\nNumber of Total Records : '+Fore.GREEN,sub_stat_df.shape[0])
-                    print(Fore.GREEN+'\n  -- Formatting Data .. ')
-                    print(Fore.CYAN+'\n -- close the Graph to know Additional Stats .. ')
+                    print(Fore.BLUE + Style.BRIGHT + '\nNumber of Total Records : ' + Fore.GREEN, sub_stat_df.shape[0])
+                    print(Fore.GREEN + '\n  -- Formatting Data .. ')
+                    print(Fore.CYAN + '\n -- close the Graph to know Additional Stats .. ')
                     sub_stat_df = pd.DataFrame([list(sub_stat_df['Status'])],
                                                columns=list(sub_stat_df['Date and time']))
                     break
                 else:
-                    print(Fore.RED+Style.BRIGHT+'Invalid Subject Acronym,\nRe-Enter : ')
+                    print(Fore.RED + Style.BRIGHT + 'Invalid Subject Acronym,\nRe-Enter : ')
                     continue
 
             return sub_stat_df
-
-
 
         def ANALYSIS_PRED(SUBJECT_df):
 
@@ -292,20 +285,26 @@ def DRIVER(driver):
             plt.xlabel = 'Stats'
             plt.barh(counts.index, counts.values, color=['lightblue', 'red'], edgecolor='black')
 
-
             print('\nAdditional STATS.')
+            try:
+                PRESENT_PERCENTAGE = (counts['Present'] / sum(counts.values)) * 100
+                ABSENT_PERCENTAGE = (counts['Absent'] / sum(counts.values)) * 100
 
-            PRESENT_PERCENTAGE = (counts['Present'] / sum(counts.values)) * 100
-            ABSENT_PERCENTAGE = (counts['Absent'] / sum(counts.values)) * 100
+                print(Fore.BLUE + Style.BRIGHT + '\nAbsent Percentage for Subject is : ' + Fore.GREEN,
+                      (round(ABSENT_PERCENTAGE, 2)), end='%')
+                print(Fore.BLUE + Style.BRIGHT + '\nPercent Percentagge for the Subject is ' + Fore.GREEN,
+                      (round(PRESENT_PERCENTAGE, 2)), end='%')
+            except KeyError:
+                print(Fore.BLUE + Style.BRIGHT + '\nPercent Percentagge for the Subject is ' + Fore.GREEN,
+                      (round(PRESENT_PERCENTAGE, 2)), end='%')
 
-            print(Fore.BLUE+Style.BRIGHT+'\nAbsent Percentage for Subject is : '+Fore.GREEN,(round(ABSENT_PERCENTAGE, 2)))
-            print(Fore.BLUE+Style.BRIGHT+'\nPercent Percentagge for the Subject is '+Fore.GREEN,(round(PRESENT_PERCENTAGE, 2)))
+                print(Fore.RED + '\nNo Absent Records found ..')
 
             plt.show()
 
         df_list = STATUS_CALENDAR()
         print(Fore.GREEN + '\nData Collection Completed .. \n')
-        print(Fore.BLUE+'-- Initiating Data Organisation .. ')
+        print(Fore.BLUE + '-- Initiating Data Organisation .. ')
         organised_df = DATA_ORGANISATION(df_list)
 
         try:
@@ -321,7 +320,7 @@ def DRIVER(driver):
         ANALYSIS_PRED(SUBJECT_DF)
 
 
-    except (NoSuchWindowException,WebDriverException):
+    except (NoSuchWindowException, WebDriverException):
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
 
@@ -334,6 +333,5 @@ def DRIVER(driver):
 
     except KeyboardInterrupt:
         print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
-
 
 
