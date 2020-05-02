@@ -8,7 +8,7 @@ import pandas as pd
 import datetime
 import calendar
 import time
-
+import os
 VERSION = '~ 1.0.0'
 
 KEYBOARDPROMPTS_Yy = ['Y', 'y']
@@ -53,9 +53,14 @@ def STATUS_PY():
         driver = webdriver.Chrome(options=options)
 
         # Login Details
-        file = open('logindetails.txt', 'r+')
-        content = file.readlines()
-        if (content == []):
+        fn = 'logindetails.txt'
+        if os.path.exists(fn):
+            file = open(fn, "r")
+            temp = file.readlines()
+            file.close()
+
+        else:
+            file = open(fn, "w")
             print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
 
             print('\n')
@@ -63,15 +68,10 @@ def STATUS_PY():
             detail1 = input('R E G I S T R A T I O N  I D :')
             print('\n')
             detail2 = input('P A S S W O R D :')
+
             file.write(detail1 + "\n" + detail2)
-            file = open('logindetails.txt', 'r+')
-            temp = file.readlines()
             file.close()
-
-
-        else:
-
-            file = open('logindetails.txt', 'r+')
+            file = open(fn, 'r')
             temp = file.readlines()
             file.close()
 
