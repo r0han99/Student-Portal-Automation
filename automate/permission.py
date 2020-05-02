@@ -111,11 +111,11 @@ def PERMISSION_APPLY():
 
         print(BANNER + Style.RESET_ALL)
 
-        #options = Options()
-        #options.add_argument('--headless')
-        #options.add_argument('--disable-gpu')
-        #options=options
-        driver = webdriver.Chrome()
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+        
+        driver = webdriver.Chrome(options=options)
 
         url = 'https://login.gitam.edu/Login.aspx'
 
@@ -193,6 +193,7 @@ def PERMISSION_APPLY():
         def PERMISSION():
             print()
             # Reason Entry
+            time.sleep(4)
             while True:
                 REASON = input(
                     Fore.GREEN + Style.BRIGHT + '\nEnter' + Fore.BLUE + Style.BRIGHT + ' the Reason : ' + Style.RESET_ALL)
@@ -373,15 +374,12 @@ def PERMISSION_APPLY():
                     print(Fore.RED + Style.BRIGHT + 'Invalid Input, \nRe-Enter ..')
                     continue
 
-        # SUBMIT BUTTON
-        # driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
+         #SUBMIT BUTTON
+        driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
 
         driver.quit()
 
         PERMISSION()
-
-
-
 
 
     except (NoSuchWindowException, WebDriverException):
@@ -397,5 +395,6 @@ def PERMISSION_APPLY():
 
     except KeyboardInterrupt:
         print(Fore.RED + Style.BRIGHT + '\nKeyboard Interruption !\nExiting Code . . .\n')
+
 
 
