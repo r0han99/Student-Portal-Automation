@@ -58,11 +58,11 @@ def PERMISSION_STAT():
 
         print('\n\n' + BANNER + Style.RESET_ALL)
 
-        #options = Options()
-        #options.add_argument('--headless')
-        #options.add_argument('--disable-gpu')
-        #options=options
-        driver = webdriver.Chrome()
+        options = Options()
+        options.add_argument('--headless')
+        options.add_argument('--disable-gpu')
+
+        driver = webdriver.Chrome(options=options)
 
         url = 'https://login.gitam.edu/Login.aspx'
 
