@@ -58,11 +58,11 @@ def PERMISSION_STAT():
 
         print('\n\n' + BANNER + Style.RESET_ALL)
 
-        options = Options()
-        options.add_argument('--headless')
-        options.add_argument('--disable-gpu')
-
-        driver = webdriver.Chrome(options=options)
+        #options = Options()
+        #options.add_argument('--headless')
+        #options.add_argument('--disable-gpu')
+        #options=options
+        driver = webdriver.Chrome()
 
         url = 'https://login.gitam.edu/Login.aspx'
 
@@ -90,7 +90,8 @@ def PERMISSION_STAT():
         pd.options.display.width = None
 
         PROGRESS_BAR('Fetching Required Data')
-        driver.find_element_by_xpath(xpath='//*[@id="MainContent_vsp"]/a').click()
+
+        driver.find_element_by_xpath(xpath="//a[@href='Permissionsvsp.aspx']").click()
 
         driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button6"]').click()
         time.sleep(2)
@@ -140,7 +141,7 @@ def PERMISSION_STAT():
         print(permission_type_df)
         print(Style.RESET_ALL + '\n')
         while True:
-            REASON = input(Fore.GREEN + 'Enter' + Fore.BLUE + Style.BRIGHT + ' REASON :')
+            REASON = input(Fore.GREEN + 'Enter' + Fore.BLUE + Style.BRIGHT + ' REASON to sort :')
             if (REASON in list(dict(history_df['Reason']).values())):
                 break
             else:
@@ -186,6 +187,7 @@ def PERMISSION_STAT():
     except (NoSuchWindowException, WebDriverException):
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+        print(Fore.RED+'\nNote ~ This Abnormal exit of the browser is either because you, the user are from a different CAMPUS or a Non-resident Student \nIf not,')
 
 
     except SessionNotCreatedException:
