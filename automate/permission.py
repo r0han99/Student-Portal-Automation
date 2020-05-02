@@ -95,19 +95,18 @@ def PERMISSION_APPLY():
         BANNER = Fore.RED + Style.BRIGHT + '''
 
 
+        A ᴜ ᴛ ᴏ ᴍ ᴀ ᴛ ᴇ''' + Fore.BLUE + Style.BRIGHT + '''                                                                             
+                                                        Y8P                   Y8P                                                    
 
-                         A ᴜ ᴛ ᴏ ᴍ ᴀ ᴛ ᴇ''' + Fore.BLUE + Style.BRIGHT + '''                                                                             
-                                                                            Y8P                   Y8P                                                    
-
-                                    88888b.   .d88b.  888d888 88888b.d88b.  888 .d8888b  .d8888b  888  .d88b.  88888b.                                   
-                                    888 "88b d8P  Y8b 888P"   888 "888 "88b 888 88K      88K      888 d88""88b 888 "88b                                  
-                                    888  888 88888888 888     888  888  888 888 "Y8888b. "Y8888b. 888 888  888 888  888                                  
-                                    888 d88P Y8b.     888     888  888  888 888      X88      X88 888 Y88..88P 888  888                                  
-                                    88888P"   "Y8888  888     888  888  888 888  88888P'  88888P' 888  "Y88P"  888  888                                  
-                                    888                                                                                                                  
-                                    888                                                                                                                  
-                                    888                                                                                                                  
-                                                                                                                ''' + Fore.GREEN + Style.BRIGHT + VERSION
+                88888b.   .d88b.  888d888 88888b.d88b.  888 .d8888b  .d8888b  888  .d88b.  88888b.                                   
+                888 "88b d8P  Y8b 888P"   888 "888 "88b 888 88K      88K      888 d88""88b 888 "88b                                  
+                888  888 88888888 888     888  888  888 888 "Y8888b. "Y8888b. 888 888  888 888  888                                  
+                888 d88P Y8b.     888     888  888  888 888      X88      X88 888 Y88..88P 888  888                                  
+                88888P"   "Y8888  888     888  888  888 888  88888P'  88888P' 888  "Y88P"  888  888                                  
+                888                                                                                                                  
+                888                                                                                                                  
+                888                                                                                                                  
+                                                                                                ''' + Fore.GREEN + Style.BRIGHT + VERSION
 
         temp = CREDENTIALS()
 
@@ -138,7 +137,8 @@ def PERMISSION_APPLY():
             print(Fore.GREEN + Style.BRIGHT + 'Successful')
 
 
-        driver.find_element_by_xpath(xpath='//*[@id="MainContent_vsp"]/a').click()
+        driver.find_element_by_xpath(xpath='// *[ @ id = "MainContent_vsp"] / a').click()
+
 
         time.sleep(1)
 
@@ -199,7 +199,7 @@ def PERMISSION_APPLY():
             while True:
                 REASON = input(
                     Fore.GREEN + Style.BRIGHT + '\nEnter' + Fore.BLUE + Style.BRIGHT + ' the Reason : ' + Style.RESET_ALL)
-                if (len(REASON) < 6):
+                if (len(REASON) < 4):
                     print(Fore.RED + Style.BRIGHT + '\nEnter a Valid Reason ! ' + Style.RESET_ALL)
                     continue
                 else:
@@ -350,7 +350,8 @@ def PERMISSION_APPLY():
             PERMISSION_TYPE = 'Permission'
 
             driver.find_element_by_xpath(xpath='//*[@id="MainContent_Chk"]').click()
-
+            if not os.path.exists('Screenshots'):
+                os.makedirs('Screenshots')
             print(Fore.GREEN + '\n   -- Opening Image Preview of the Application..')
             driver.save_screenshot(
                 './Screenshots/' + PERMISSION_TYPE + '-' + FILE_NAME + '.png')  # saves screenshot of entire page
@@ -376,12 +377,13 @@ def PERMISSION_APPLY():
                     print(Fore.RED + Style.BRIGHT + 'Invalid Input, \nRe-Enter ..')
                     continue
 
-         #SUBMIT BUTTON
-        driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
+            print(Fore.GREEN+Style.BRIGHT+'\nSubmit Done.\n')
+            # SUBMIT BUTTON
+            # driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
+            driver.quit()
 
-        driver.quit()
 
-        PERMISSION()
+
 
 
     except (NoSuchWindowException, WebDriverException):
