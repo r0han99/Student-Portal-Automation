@@ -6,7 +6,7 @@ import time
 from colorama import Fore,Style
 from tabulate import tabulate
 from console_progressbar import ProgressBar
-
+import os
 VERSION = ' ~ 1.0.0'
 
 def PROGRESS_BAR(prompt):
@@ -24,9 +24,14 @@ def PROGRESS_BAR(prompt):
 
 
 def CREDENTIALS():
-    file = open('logindetails.txt', 'r+')
-    content = file.readlines()
-    if (content == []):
+    fn = 'logindetails.txt'
+    if os.path.exists(fn):
+        file = open(fn, "r")
+        temp = file.readlines()
+        file.close()
+
+    else:
+        file = open(fn, "w")
         print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
 
         print('\n')
@@ -34,17 +39,13 @@ def CREDENTIALS():
         detail1 = input('R E G I S T R A T I O N  I D :')
         print('\n')
         detail2 = input('P A S S W O R D :')
+
         file.write(detail1 + "\n" + detail2)
-        file = open('logindetails.txt', 'r+')
+        file.close()
+        file = open(fn, 'r')
         temp = file.readlines()
         file.close()
 
-
-    else:
-
-        file = open('logindetails.txt', 'r+')
-        temp = file.readlines()
-        file.close()
     return temp
 
 def PERMISSION_STAT():
