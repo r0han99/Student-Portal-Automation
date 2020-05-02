@@ -6,6 +6,7 @@ import pandas as pd
 from colorama import Fore,Style
 from console_progressbar import ProgressBar
 import time
+import os
 
 VERSION = '1.0.0'
 
@@ -23,10 +24,15 @@ def PROGRESS_BAR(prompt):
     print(Style.RESET_ALL)
 
 # Login Details
-file = open('logindetails.txt', 'r+')
-content = file.readlines()
 
-if (content == []):
+fn = 'logindetails.txt'
+if os.path.exists(fn):
+    file = open(fn, "r")
+    temp = file.readlines()
+    file.close()
+
+else:
+    file = open(fn, "w")
     print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
 
     print('\n')
@@ -34,18 +40,12 @@ if (content == []):
     detail1 = input('R E G I S T R A T I O N  I D :')
     print('\n')
     detail2 = input('P A S S W O R D :')
+
     file.write(detail1 + "\n" + detail2)
-    file = open('logindetails.txt', 'r+')
+    file.close()
+    file = open(fn, 'r')
     temp = file.readlines()
     file.close()
-
-
-else:
-
-    file = open('logindetails.txt', 'r+')
-    temp = file.readlines()
-    file.close()
-
 
 url = 'https://login.gitam.edu/Login.aspx'
 
@@ -114,7 +114,6 @@ def WEB_AUTOMATE(driver):
                 press_key = input(Fore.GREEN+"Press " + Fore.RED+Style.BRIGHT +'Enter ' +Style.RESET_ALL+Fore.GREEN+"to continue . . .")
                 if (press_key == True or press_key == False):
                     continue
-                    
 
             print('\n\n')
             print(Fore.BLUE + Style.BRIGHT + '____________________________________________')
@@ -220,7 +219,6 @@ def WEB_AUTOMATE(driver):
     except (NoSuchWindowException,WebDriverException):
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
-        print(Style.RESET_ALL)
 
 
     except SessionNotCreatedException:
@@ -228,11 +226,9 @@ def WEB_AUTOMATE(driver):
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
         print(
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
-        print(Style.RESET_ALL)
-        
+
     except KeyboardInterrupt:
         print(Fore.RED+Style.BRIGHT +'\n Keyboard Interruption !\nExiting Code . . .\n')
-        print(Style.RESET_ALL)
 
 
 
