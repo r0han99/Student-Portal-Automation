@@ -24,27 +24,29 @@ def PROGRESS_BAR(prompt):
 
 # Login Details
 
-file = open('logindetails.txt', 'r+')
-content = file.readlines()
-if (content == []):
-    print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
-
-    print('\n')
-
-    detail1 = input('R E G I S T R A T I O N  I D :')
-    print('\n')
-    detail2 = input('P A S S W O R D :')
-    file.write(detail1 + "\n" + detail2)
+try:
     file = open('logindetails.txt', 'r+')
-    temp = file.readlines()
-    file.close()
+    content = file.readlines()
+    if (content == []):
+        print('E N T E R  Y O U R  L O G I N  D E T A I L S : ')
+
+        print('\n')
+
+        detail1 = input('R E G I S T R A T I O N  I D :')
+        print('\n')
+        detail2 = input('P A S S W O R D :')
+        file.write(detail1 + "\n" + detail2)
+        file = open('logindetails.txt', 'r+')
+        temp = file.readlines()
+        file.close()
+except FileNotFoundError:
+
+        file = open('logindetails.txt', 'w+')
+        temp = file.readlines()
+        file.close()
 
 
-else:
 
-    file = open('logindetails.txt', 'r+')
-    temp = file.readlines()
-    file.close()
 
 
 
