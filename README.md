@@ -7,10 +7,6 @@
 
 ## Installation
 
-### Chrome Driver Installation 
-#### Visit-  [ChromeDriver/Downloads](https://chromedriver.chromium.org/downloads)
-
-**NOTE**: Make sure the chromedriver version is __synchronised__ with your Chrome Browser.
 
 #### Extract the chromedriver __zip__ file, __Copy__ and __Paste__ the executable file in the /bin folder, Under /automate-master
 
@@ -28,13 +24,17 @@ $ cd automate
 # install python3 and python3-pip if they are not installed
 
 # install the requirements
-$ python3 -m pip install -r requirements.txt
+$ pip3 install -r requirements.txt 
 ```
 
 ## Usage
 ```
 $ python3 automate.py
 ```
+### Chrome Driver Installation 
+#### Visit-  [ChromeDriver/Downloads](https://chromedriver.chromium.org/downloads)
 
+**NOTE**: Make sure the chromedriver version is __synchronised__ with your Chrome Browser.
+[Chrome Driver installation is quite a bit ambiguous, I request you to read the documentation for detailed go through of the installation.] 
 
 #### Note ~ __Please read the Documentation for details__
