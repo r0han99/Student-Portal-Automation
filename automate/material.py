@@ -62,6 +62,7 @@ def MATERIAL_PY():
         if (press_key == True or press_key == False):
             print(Fore.CYAN+Style.BRIGHT+"\nI presume, You grabbed everything you needed .."+Fore.RED+Style.BRIGHT+"\n\nExiting Code .. ")
             web.driver.quit()
+            print(Style.RESET_ALL)
             exit(1)
 
     try:
@@ -101,20 +102,41 @@ def MATERIAL_PY():
         web.driver.minimize_window()
         SUBJECT_PANEL()
 
+
     except (NoSuchWindowException, WebDriverException):
-        print(Fore.RED + "\n- - Seems like you closed the Browser window yourself")
-        print(Fore.RED + "- - Please RE-EXECUTE the script if you are not done . . .  \n")
+
+        print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
+
+        print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+
+        print(Style.RESET_ALL)
+
+        exit()
+
 
 
     except SessionNotCreatedException:
+
         print(
+
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
+
         print(
+
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
+
+        print(Style.RESET_ALL)
+
+        exit()
 
 
     except KeyboardInterrupt:
+
         print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
+
+        print(Style.RESET_ALL)
+
+        exit()
 
 
 
