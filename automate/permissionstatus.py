@@ -86,6 +86,12 @@ def PERMISSION_STAT():
         print(Fore.BLUE + Style.BRIGHT + 'Login Status ~ ', end='')
         if (driver.title == 'GITAM | Student portal'):
             print(Fore.GREEN + Style.BRIGHT + 'Successful')
+        else:
+            print(Fore.RED + Style.BRIGHT + 'Failed')
+            driver.quit()
+            print(Fore.RED + '\nThere might be a driver-error, Please re-execute the script.\n\n')
+            print(Style.RESET_ALL)
+            exit()
 
         # Permissions and Leave
         pd.options.display.width = None
@@ -172,33 +178,58 @@ def PERMISSION_STAT():
         else:
             print(Fore.RED + '\nNo results found in the Under Process List  ')
             print(Fore.GREEN + '\n  -- Application might be either' + Fore.BLUE + ' Approved or rejected ..')
-            print(Fore.CYAN + Style.BRIGHT + '\n  --Checking in Approvals List.. \n')
+            print(Fore.CYAN + Style.BRIGHT + '\n  -- Checking in Approvals List.. \n')
             permission_type_df1 = approved_df[approved_df['Type'] == TYPE]
             if (approved_df[approved_df['Reason'] == REASON].empty == False):
                 print(approved_df[approved_df['Reason'] == REASON])
                 print(Fore.GREEN + Style.BRIGHT + '\nApproved .. \n')
                 driver.quit()
+                print(Style.RESET_ALL)
+                exit()
             else:
                 print(
                     Fore.RED + Style.BRIGHT + '\nSorry, it Seems like your application either got rejected or data might be  miss-placed ..[ Please Conduct a Manual Verification]. ')
                 driver.quit()
+                print(Style.RESET_ALL)
+                exit()
+
 
 
 
     except (NoSuchWindowException, WebDriverException):
+
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
+
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
-        print(Fore.RED+'\nNote ~ This Abnormal exit of the browser is either because you, the user are from a different CAMPUS or a Non-resident Student \nIf not,')
+
+        print(Style.RESET_ALL)
+
+        exit()
+
 
 
     except SessionNotCreatedException:
+
         print(
+
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
+
         print(
+
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
 
+        print(Style.RESET_ALL)
+
+        exit()
+
+
     except KeyboardInterrupt:
-        print(Fore.RED + Style.BRIGHT + '\nKeyboard Interruption !\nExiting Code . . .\n')
+
+        print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
+
+        print(Style.RESET_ALL)
+
+        exit()
 
 
 
