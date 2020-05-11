@@ -9,3 +9,4 @@ seaborn
 numpy
 console_progressbar
 lxml
+Pillow
