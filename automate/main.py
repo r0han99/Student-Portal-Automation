@@ -91,6 +91,13 @@ def WEB_AUTOMATE(driver):
 
         if(driver.title == 'GITAM | Student portal'):
             print(Fore.GREEN + Style.BRIGHT+'Successful')
+        else:
+            print(Fore.RED + Style.BRIGHT + 'Failed')
+            driver.quit()
+            print(Fore.RED+'\nThere might be a driver-error, Please re-execute the script.\n\n')
+            print(Style.RESET_ALL)
+            exit()
+
 
 
         # Attendance
@@ -123,7 +130,7 @@ def WEB_AUTOMATE(driver):
             print(Fore.WHITE + '* By Subject{:>37}'.format(Fore.RED + ' [ 1 ]'))
             print(Fore.WHITE + '* Today{:>42}'.format(Fore.RED + ' [ 2 ]'))
             print(Fore.WHITE + '* Yesterday{:>38}'.format(Fore.RED + ' [ 3 ]'))
-            print(Fore.WHITE + '* Exit-Code{:>38}'.format(Fore.RED + ' [ y ]'))
+            print(Fore.WHITE + '* Exit-Code{:>38}'.format(Fore.RED + ' [ e ]'))
             print(Fore.BLUE + Style.BRIGHT + '____________________________________________')
 
             option = input(Fore.BLUE + 'E N T E R  C O D E >> ')
@@ -133,10 +140,10 @@ def WEB_AUTOMATE(driver):
 
 
             dict = {
-                1: 'Ｂｙ Ｓｕｂｊｅｃｔ',
-                2: 'Ｔｏｄａｙ',
-                3: 'Ｙｅｓｔｅｒｄａｙ',
-                'y': 0,
+                1: 'B y  S u j e c t',
+                2: 'T o d a y',
+                3: 'Y e s t e r d a y ',
+                'e': 0,
 
             }
             pd.options.display.width = None
@@ -202,23 +209,26 @@ def WEB_AUTOMATE(driver):
                           Style.RESET_ALL)
                     print('\n\n\n')
 
-            elif (option == 'Y' or option == 'y'):
+            elif (option.lower() == 'e'):
                 print(Fore.RED+Style.BRIGHT+'Closing Browser . . . ')
                 driver.quit()
                 print(Fore.RED + Style.BRIGHT + 'Exiting Code . . . \n')
-
+                print(Style.RESET_ALL)
                 exit(0)
 
+
             else:
-                print(Fore.RED+Style.BRIGHT+'\n------Wrong Input Enter Again . . . . \n')
+                print(Fore.RED+Style.BRIGHT+'\n------ Wrong Input Enter Again . . . . \n')
                 continue
 
 
 
 
-    except (NoSuchWindowException,WebDriverException):
+    except (NoSuchWindowException, WebDriverException):
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+        print(Style.RESET_ALL)
+        exit()
 
 
     except SessionNotCreatedException:
@@ -226,10 +236,13 @@ def WEB_AUTOMATE(driver):
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
         print(
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
+        print(Style.RESET_ALL)
+        exit()
 
     except KeyboardInterrupt:
-        print(Fore.RED+Style.BRIGHT +'\n Keyboard Interruption !\nExiting Code . . .\n')
-
+        print(Fore.RED + Style.BRIGHT + '\nKeyboard Interruption !\nExiting Code . . .\n')
+        print(Style.RESET_ALL)
+        exit()
 
 
 
