@@ -135,6 +135,12 @@ def PERMISSION_APPLY():
         print(Fore.BLUE + Style.BRIGHT + 'Login Status ~ ', end='')
         if (driver.title == 'GITAM | Student portal'):
             print(Fore.GREEN + Style.BRIGHT + 'Successful')
+        else:
+            print(Fore.RED + Style.BRIGHT + 'Failed')
+            driver.quit()
+            print(Fore.RED + '\nThere might be a driver-error, Please re-execute the script.\n\n')
+            print(Style.RESET_ALL)
+            exit()
 
 
         driver.find_element_by_xpath(xpath='// *[ @ id = "MainContent_vsp"] / a').click()
@@ -144,10 +150,15 @@ def PERMISSION_APPLY():
 
         def DATE_ENTRY(input_month_number, input_year, input_month_data):
 
-            ENTRY_DATE = int(input(Fore.GREEN + '\nEnter' + Fore.BLUE + Style.BRIGHT + ' a Date - '))
+            DATE_NOW = str(datetime.datetime.now())[:10]
+            DATE_NOW = int(DATE_NOW[-2:])
 
             while True:
-                if (ENTRY_DATE in input_month_data):
+                ENTRY_DATE = int(input(Fore.GREEN + '\nEnter' + Fore.BLUE + Style.BRIGHT + ' a Date - '))
+                if(ENTRY_DATE< DATE_NOW):
+                    print(Fore.RED+Style.BRIGHT+"\nYou can apply for a permission in the PAST!\n")
+                    continue
+                elif (ENTRY_DATE in input_month_data):
 
                     break
 
@@ -377,28 +388,51 @@ def PERMISSION_APPLY():
                     print(Fore.RED + Style.BRIGHT + 'Invalid Input, \nRe-Enter ..')
                     continue
 
-            print(Fore.GREEN+Style.BRIGHT+'\nSubmit Done.\n')
-            # SUBMIT BUTTON
-            # driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
+            print(Fore.GREEN+Style.BRIGHT+'\nSubmit Done.[[-run-permission-status-Script-to-verify-]]\n')
+
+            #SUBMIT BUTTON
+            driver.find_element_by_xpath(xpath='//*[@id="MainContent_Button1"]').click()
             driver.quit()
+            print(Style.RESET_ALL)
+            exit()
 
         PERMISSION()
 
 
 
+
     except (NoSuchWindowException, WebDriverException):
+
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
+
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+
+        print(Style.RESET_ALL)
+
+        exit()
+
 
 
     except SessionNotCreatedException:
+
         print(
+
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
+
         print(
+
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
 
+        print(Style.RESET_ALL)
+
+        exit()
+
+
     except KeyboardInterrupt:
-        print(Fore.RED + Style.BRIGHT + '\nKeyboard Interruption !\nExiting Code . . .\n')
 
+        print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
 
+        print(Style.RESET_ALL)
+
+        exit()
 
