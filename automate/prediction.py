@@ -106,6 +106,12 @@ def DRIVER(driver):
 
         if (driver.title == 'GITAM | Student portal'):
             print(Fore.GREEN + Style.BRIGHT + 'Successful')
+        else:
+            print(Fore.RED + Style.BRIGHT + 'Failed')
+            driver.quit()
+            print(Fore.RED + '\nThere might be a driver-error, Please re-execute the script.\n\n')
+            print(Style.RESET_ALL)
+            exit()
 
         print(Fore.GREEN + '\n -- Handling a Calendar ..  ')
         driver.find_element_by_xpath(xpath='// *[ @ id = "MainContent_ad"] / a').click()
@@ -229,7 +235,7 @@ def DRIVER(driver):
                 pivot = pivot.reset_index(drop=True)
                 pd.options.display.width = None
                 print('\n')
-                print(Fore.BLUE + Style.BRIGHT + '\nNumber of Valid Records : {}' + Fore.GREEN,
+                print(Fore.BLUE + Style.BRIGHT + '\nNumber of Valid Records : ' + Fore.GREEN,
                       len(pivot['Date and time']))
                 print('\n')
                 return pivot
@@ -237,40 +243,6 @@ def DRIVER(driver):
                 print(Fore.RED + Style.BRIGHT + '\nNo Records Found !')
                 print(Fore.RED + Style.BRIGHT + '\nExiting Code .. ')
                 return 'EXIT'
-
-        def PREPROCESSING(organised_df):
-
-            Ogdf_copy = organised_df
-            subnames = list(np.unique(organised_df['Subject']))
-            subacronyms = []
-            for sub in subnames:
-                subacronyms.append(''.join(w[0].upper() for w in sub.split()))
-
-            SUBJECTS = {subacronyms[i]: subnames[i] for i in range(len(subnames))}
-            subs_df = pd.DataFrame(pd.Series(SUBJECTS))
-            subs_df.index.name = 'Subject'
-            subs_df.columns = ['Acronymns']
-            print(tabulate(subs_df, headers='keys'))
-            print('\n')
-            while True:
-                SUBJECT_INPUT = input(
-                    Fore.GREEN + 'Enter' + Fore.BLUE + Style.BRIGHT + ' a Subject Acronymn : ').upper()
-                if (SUBJECT_INPUT in SUBJECTS.keys()):
-                    print(Fore.BLUE + '\n Collecting Data of ~ ' + Fore.GREEN + Style.BRIGHT + SUBJECTS[SUBJECT_INPUT])
-                    sub_stat_df = organised_df[organised_df['Subject'] == SUBJECTS[SUBJECT_INPUT]]
-                    print(sub_stat_df.reset_index(drop=True))
-                    print(Fore.BLUE + Style.BRIGHT + '\nNumber of Total Records : ' + Fore.GREEN, sub_stat_df.shape[0])
-                    print(Fore.GREEN + '\n  -- Formatting Data .. ')
-                    print(Fore.CYAN + '\n -- close the Graph to know Additional Stats .. ')
-                    sub_stat_df = pd.DataFrame([list(sub_stat_df['Status'])],
-                                               columns=list(sub_stat_df['Date and time']))
-                    break
-                else:
-                    print(Fore.RED + Style.BRIGHT + 'Invalid Subject Acronym,\nRe-Enter : ')
-                    continue
-
-            return sub_stat_df
-
         def ANALYSIS_PRED(SUBJECT_df):
 
             # Counts
@@ -302,6 +274,45 @@ def DRIVER(driver):
 
             plt.show()
 
+
+        def PREPROCESSING(organised_df):
+
+            Ogdf_copy = organised_df
+            subnames = list(np.unique(organised_df['Subject']))
+            subacronyms = []
+            for sub in subnames:
+                subacronyms.append(''.join(w[0].upper() for w in sub.split()))
+
+            SUBJECTS = {subacronyms[i]: subnames[i] for i in range(len(subnames))}
+            subs_df = pd.DataFrame(pd.Series(SUBJECTS))
+            subs_df.index.name = 'Acronymns'
+            subs_df.columns = ['Subject']
+            print(tabulate(subs_df, headers='keys'))
+            print('\n')
+            while True:
+                SUBJECT_INPUT = input(
+                    Fore.GREEN + '\nEnter' + Fore.BLUE + Style.BRIGHT + ' a Subject Acronymn, or "e" to exit : ').upper()
+                if (SUBJECT_INPUT in SUBJECTS.keys()):
+                    print(Fore.BLUE + '\n Collecting Data of ~ ' + Fore.GREEN + Style.BRIGHT + SUBJECTS[SUBJECT_INPUT])
+                    sub_stat_df = organised_df[organised_df['Subject'] == SUBJECTS[SUBJECT_INPUT]]
+                    print(sub_stat_df.reset_index(drop=True))
+                    print(Fore.BLUE + Style.BRIGHT + '\nNumber of Total Records : ' + Fore.GREEN, sub_stat_df.shape[0])
+                    print(Fore.GREEN + '\n  -- Formatting Data .. ')
+                    print(Fore.CYAN + '\n -- close the Graph to know Additional Stats .. ')
+                    sub_stat_df = pd.DataFrame([list(sub_stat_df['Status'])],
+                                               columns=list(sub_stat_df['Date and time']))
+                    ANALYSIS_PRED(sub_stat_df)
+                elif(SUBJECT_INPUT.lower() == 'e'):
+                    print(Style.RESET_ALL)
+                    exit()
+                else:
+                    print(Fore.RED + Style.BRIGHT + '\nInvalid Subject Acronym,\nRe-Enter : ')
+                    continue
+
+
+
+
+
         df_list = STATUS_CALENDAR()
         print(Fore.GREEN + '\nData Collection Completed .. \n')
         print(Fore.BLUE + '-- Initiating Data Organisation .. ')
@@ -309,20 +320,25 @@ def DRIVER(driver):
 
         try:
             if (organised_df == 'EXIT'):
+
                 print(Fore.LIGHTBLUE_EX + Style.BRIGHT + '\nSeems Like no Records were Found .. ')
                 print(Fore.RED + Style.BRIGHT + '\nExiting Code .. ')
+                print(Style.RESET_ALL)
+                exit()
             else:
-                SUBJECT_DF = PREPROCESSING(organised_df)
+                PREPROCESSING(organised_df)
         except ValueError:
 
-            SUBJECT_DF = PREPROCESSING(organised_df)
+            PREPROCESSING(organised_df)
 
-        ANALYSIS_PRED(SUBJECT_DF)
 
+        
 
     except (NoSuchWindowException, WebDriverException):
         print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
         print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+        print(Style.RESET_ALL)
+        exit()
 
 
     except SessionNotCreatedException:
@@ -330,7 +346,11 @@ def DRIVER(driver):
             Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
         print(
             Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
+        print(Style.RESET_ALL)
+        exit()
 
     except KeyboardInterrupt:
         print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
+        print(Style.RESET_ALL)
+        exit()
 
