@@ -91,6 +91,12 @@ def STATUS_PY():
         print(Fore.CYAN + Style.BRIGHT + 'Login Status ~ ', end='')
         if (driver.title == 'GITAM | Student portal'):
             print(Fore.GREEN + Style.BRIGHT + 'Successful')
+        else:
+            print(Fore.RED + Style.BRIGHT + 'Failed')
+            driver.quit()
+            print(Fore.RED + '\nThere might be a driver-error, Please re-execute the script.\n\n')
+            print(Style.RESET_ALL)
+            exit()
         # attendance
 
         driver.find_element_by_xpath('//*[@id="MainContent_ad"]/a').click()
@@ -260,6 +266,7 @@ def STATUS_PY():
             elif (OPTION_KEY in KEYBOARDPROMPTS_Nn):
                 driver.quit()
                 print(Fore.RED + Style.BRIGHT + '\nExiting Code . . .\n')
+                print(Style.RESET_ALL)
                 exit()
             else:
                 print(Fore.RED + Style.BRIGHT + '\nInvalid Key..\nRe-Enter : ')
@@ -272,11 +279,16 @@ def STATUS_PY():
 
 
 
+
     except (NoSuchWindowException, WebDriverException):
 
-        print(Fore.RED + Style.BRIGHT + "\n\nBrowser Window Closed . . . ")
+        print(Fore.RED + Style.BRIGHT + "\nBrowser Window Closed . . . ")
 
-        print(Fore.RED + Style.BRIGHT + "\n\nPlease RE-EXECUTE  the script\n")
+        print(Fore.RED + Style.BRIGHT + "\nPlease RE-EXECUTE  the script\n")
+
+        print(Style.RESET_ALL)
+
+        exit()
 
 
 
@@ -284,17 +296,24 @@ def STATUS_PY():
 
         print(
 
-            Fore.RED + Style.BRIGHT + "\nChrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
+            Fore.RED + Style.BRIGHT + "Chrome-Driver --version and Chrome --version are not Sychronised ..\n -- Please read the Documentation --  ")
 
         print(
 
-            Fore.RED + Style.BRIGHT + '\nVisit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
+            Fore.RED + Style.BRIGHT + 'Visit the url to Download Chrome-Driver' + Fore.CYAN + Style.BRIGHT + 'https://chromedriver.chromium.org/downloads')
+
+        print(Style.RESET_ALL)
+
+        exit()
 
 
     except KeyboardInterrupt:
 
-        print(Fore.RED + Style.BRIGHT + '\n\nKeyboard Interruption !\nExiting Code . . .\n')
+        print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
 
+        print(Style.RESET_ALL)
+
+        exit()
 
 
 
