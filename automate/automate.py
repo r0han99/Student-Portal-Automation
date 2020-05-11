@@ -92,26 +92,26 @@ try:
             print(Fore.RED + 'Script_Action{:>50}'.format('C o d e'))
 
             print(Fore.BLUE + Style.BRIGHT + '_________________________________________________________________')
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗚-𝗟𝗲𝗮𝗿𝗻 𝗠𝗮𝘁𝗲𝗿𝗶𝗮𝗹𝘀{:>52}'.format(
-                Fore.RED + '𝗠𝗮𝘁𝗲𝗿𝗶𝗮𝗹 || 𝗠'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' G-learn Materials{:>52}'.format(
+                Fore.RED + 'Material || M'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝗰𝗮𝗱𝗲𝗺𝗶𝗰 𝗦𝘁𝗮𝘁𝘂𝘀{:>52}'.format(
-                Fore.RED + '𝗦𝘁𝗮𝘁𝘂𝘀 || 𝗦'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' Academic Attendance Status{:>41}'.format(
+                Fore.RED + 'Status || S'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝘁𝘁𝗲𝗻𝗱𝗮𝗻𝗰𝗲 𝗣𝗿𝗲𝗱𝗶𝗰𝘁𝗼𝗿{:>50}'.format(
-                Fore.RED + '𝗣𝗿𝗲𝗱𝗶𝗰𝘁𝗼𝗿 || 𝗣'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' Attendance Analysis{:>51}'.format(
+                Fore.RED + 'Predictor || P'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝘁𝘁𝗲𝗻𝗱𝗮𝗻𝗰𝗲 𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗲{:>50}'.format(
-                Fore.RED + '𝗔𝘂𝘁𝗼𝗺𝗮𝘁𝗲 || 𝗔'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' Attendance Automate{:>50}'.format(
+                Fore.RED + 'Automate || A'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗔𝗽𝗽𝗹𝘆 𝗳𝗼𝗿 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻{:>47}'.format(
-                Fore.RED + '𝗔𝗽𝗽𝗹𝘆 || 𝗮𝗽'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' Apply for a Permission(VSP){:>40}'.format(
+                Fore.RED + 'Apply || ap'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗣𝗲𝗿𝗺𝗶𝘀𝘀𝗶𝗼𝗻 𝗦𝘁𝗮𝘁𝘂𝘀{:>50}'.format(
-                Fore.RED + '𝗽𝘀𝘁𝗮𝘁 || 𝗽𝘀'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' Permission Status{:>50}'.format(
+                Fore.RED + 'pstat || ps'))
 
-            print(Fore.RED + '[ * ]' + Fore.WHITE + ' 𝗘𝘅𝗶𝘁 𝗖𝗼𝗱𝗲{:>55}'.format(
-                Fore.RED + '𝗲𝘅𝗲 || 𝗲'))
+            print(Fore.RED + '[ * ]' + Fore.WHITE + ' Exit Code{:>56}'.format(
+                Fore.RED + 'exe || e'))
 
             print('\n')
             option = input(Fore.BLUE + 'E N T E R  C O D E >> ').lower()
@@ -146,6 +146,8 @@ try:
             elif option in PERMISSION_STATUS_CODE:
                 PERMISSION_STAT()
             elif option in PREDICTORS_SCRIPT_CODE:
+
+                print(Fore.RED+Style.BRIGHT+'\nNote ~ '+Fore.BLUE+" Deploying this script in 'Graphical-Mode' will be slower that anticipated.\n")
 
                 while True:
                     control_flow = input(
@@ -183,9 +185,10 @@ try:
 
 
 except KeyboardInterrupt:
-    print(Fore.RED + Style.BRIGHT + '\n Keyboard Interruption !\nExiting Code . . .\n')
+    print(Fore.RED + Style.BRIGHT + '\n\nKeyboard Interruption !\nExiting Code . . .\n')
 
 
+print(Style.RESET_ALL)
 
 
 
